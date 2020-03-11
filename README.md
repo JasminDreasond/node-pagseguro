@@ -164,7 +164,7 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 
 ### Notificações
 
-Checando transação através do código de noificação
+Checando transação através do código de notificação
 
 ```javascript
     // Inicializa o objeto PagSeguro
