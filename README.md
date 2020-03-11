@@ -164,7 +164,7 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 
 ### Notificações
 
-Use este método para validar suas notificações recebidas pelo PagSeguro.
+Checando transação através do código de noificação
 
 ```javascript
     // Inicializa o objeto PagSeguro
@@ -176,6 +176,27 @@ Use este método para validar suas notificações recebidas pelo PagSeguro.
 
     // Obter Notificação
     pag.getNotification("NOTIFICATION_CODE", function(err, res) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(res);
+    });
+```
+
+### Transações
+
+Checando transação através do código
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
+    pag.getTransaction("TRANSACTION_CODE", function(err, res) {
         if (err) {
             console.log(err);
         }
