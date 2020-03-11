@@ -162,6 +162,20 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     });
 ```
 
+### Notificações
+
+Use este método para validar suas notificações recebidas pelo PagSeguro.
+
+```javascript
+    // Inicializa o objeto PagSeguro em modo assinatura
+    pag.getNotification("NOTIFICATION_CODE", function(err, res) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(res);
+    });
+```
+
 ### Modo Sandbox
 
 O modo Sandbox do PagSeguro (hoje, 09/10/2014, em beta) permite o desenvolvedor a testar seu código usando o serviço do PagSeguro sem disparar transações reais mas ainda recebendo notificações. Por enquanto ele só dá suporte a pagamentos padrão, logo para testar assinaturas ainda é necessário realizar uma transação real.
@@ -174,7 +188,7 @@ Para utilizar o modo Sandbox, basta inicializar a biblioteca com a opção `mode
         pag = new pagseguro({
             email : 'suporte@lojamodelo.com.br',
             token: '95112EE828D94278BD394E91C4388F20',
-            mode : 'sandbox'
+            sandbox : true
         });
 ```
 
