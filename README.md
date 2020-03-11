@@ -220,13 +220,6 @@ Para utilizar o modo Sandbox, basta inicializar a biblioteca com a opção `mode
 
 ## Changelog
 
-* **v0.1.0** - Assinaturas no PagSeguro
-    - Novo construtor aceita um objeto de configuração ao invés dos argumentos de e-mail e token. A maneira antiga ainda é válida, mas está obsoleta e gerará um aviso no console.
-    - A configuração aceita três modos de pagamento (atributo `mode`):
-        + `'payment'` : Pagamento único padrão do PagSeguro (**Padrão**)
-        + `'subscription'` : Modo de assinatura para pagamentos recorrentes
-        + `'sandbox'` : Modo de testes do PagSeguro (ver https://sandbox.pagseguro.uol.com.br/)
-    - Nova função para configurar assinaturas: `pag.preApproval(config)`
-    - Caso a função `addItem()` seja chamada em modo `subscription`, é levantada uma exceção
-    - Caso a função `preApproval()` seja chamada em modo `payment` ou `sandbox`, é levantada uma exceção
-    - Caso a função `setReviewURL()` seja chamada em modo `payment` ou `sandbox`, é levantada uma exceção
+* **v0.2.0** - Assinaturas no PagSeguro
+    - Checador de translações por notificação adicionado
+    - Checador de translações por código adicionado
