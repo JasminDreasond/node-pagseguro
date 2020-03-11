@@ -4,7 +4,7 @@ Integração ao Pagseguro para sistemas usando o Node.js
 
 ## Instalação
 
-`npm install pagseguro`
+`npm install JasminDreasond/node-pagseguro`
 
 ## Como usar
 
