@@ -154,11 +154,10 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     pag.setReviewURL("http://www.lojamodelo.com.br/revisao");
 
     //Enviando o xml ao pagseguro
-    pag.send(function(err, res) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(res);
+    pag.send().then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
     });
 ```
 
@@ -175,11 +174,10 @@ Checando transação através do código de notificação
         });
 
     // Obter Notificação
-    pag.getNotification("NOTIFICATION_CODE", function(err, res) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(res);
+    pag.getNotification("NOTIFICATION_CODE").then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
     });
 ```
 
@@ -196,11 +194,10 @@ Checando transação através do código
         });
 
     // Obter Notificação
-    pag.getTransaction("TRANSACTION_CODE", function(err, res) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(res);
+    pag.getTransaction("TRANSACTION_CODE").then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
     });
 ```
 
