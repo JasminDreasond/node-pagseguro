@@ -1,43 +1,26 @@
 {
     "author": {
-        "name": "Alan Hoffmeister",
-        "email": "alanhoffmeister@gmail.com"
+        "name": "Yasmin Seidel dos Santos",
+        "email": "tiny@nyah.club",
+        "url": "https://github.com/JasminDreasond"
     },
-	"contributors" : [
-        {
-            "name" : "Alan Hoffmeister",
-            "email" : "alanhoffmeister@gmail.com"
-        },
-        {
-            "name" : "Vinicius Trampusch",
-            "email" : "vinicius.trampusch@gmail.com",
-            "url" : "https://github.com/ViniciusTrampusch"
-        },
-        {
-            "name" : "Bernardo F. Domingues",
-            "email" : "bernardofd@gmail.com",
-            "url" : "https://github.com/bernardofd"
-        }
-    ],
     "name": "pagseguro",
     "description": "Fornece integração à API de pagamentos do PagSeguro",
     "version": "0.1.0",
-    "homepage": "https://github.com/alanhoff/node-pagseguro",
+    "homepage": "https://github.com/JasminDreasond/node-pagseguro",
     "repository": {
         "type": "git",
-        "url": "git://github.com/alanhoff/node-pagseguro.git"
+        "url": "git://github.com/JasminDreasond/node-pagseguro.git"
     },
-    "scripts" : {
-        "prepublish" : "./node_modules/.bin/coffee -c ./lib/",
-        "build" : "npm run prepublish"
+    "scripts": {
+        "prepublish": "./node_modules/.bin/coffee -c ./lib/",
+        "build": "npm run prepublish"
     },
     "dependencies": {
-        "request": "2.9.x",
-        "jstoxml": "0.1.x"
+        "jstoxml": "^0.1.0",
+        "request": "^2.9.203"
     },
-    "devDependencies": {
-        "coffee-script" : "*"
-    },
+    "devDependencies": {},
     "optionalDependencies": {},
     "engines": {
         "node": "*"
