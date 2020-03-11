@@ -79,11 +79,10 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     pag.setNotificationURL("http://www.lojamodelo.com.br/notificacao");
 
     //Enviando o xml ao pagseguro
-    pag.send(function(err, res) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(res);
+    pag.send().then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
     });
 ```
 
