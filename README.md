@@ -217,9 +217,3 @@ Para utilizar o modo Sandbox, basta inicializar a biblioteca com a opção `mode
 ```
 
 É preciso gerar um token específico para o modo Sandbox na [Página do Sandbox do PagSeguro](https://sandbox.pagseguro.uol.com.br)
-
-## Changelog
-
-* **v0.2.0** - Assinaturas no PagSeguro
-    - Checador de translações por notificação adicionado
-    - Checador de translações por código adicionado
