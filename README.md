@@ -167,7 +167,14 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 Use este método para validar suas notificações recebidas pelo PagSeguro.
 
 ```javascript
-    // Inicializa o objeto PagSeguro em modo assinatura
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
     pag.getNotification("NOTIFICATION_CODE", function(err, res) {
         if (err) {
             console.log(err);
