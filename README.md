@@ -23,8 +23,8 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     });
 
     //Configurando a moeda e a referência do pedido
-    pag.currency('BRL');
-    pag.reference('12345');
+    pag.setCurrency('BRL');
+    pag.setReference('12345');
 
     //Adicionando itens
     pag.addItem({
@@ -52,7 +52,7 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     });
 
     //Configurando as informações do comprador
-    pag.buyer({
+    pag.setBuyer({
         name: 'José Comprador',
         email: 'comprador@uol.com.br',
         phoneAreaCode: '51',
@@ -61,7 +61,7 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 
     //Configurando a entrega do pedido
 
-    pag.shipping({
+    pag.setShipping({
         type: 1,
         street: 'Rua Alameda dos Anjos',
         number: '367',
@@ -99,15 +99,15 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 
     //Configurando a moeda e a referência do pedido
     pag
-        .currency('BRL')
-        .reference('12345');
+        .setCurrency('BRL')
+        .setReference('12345');
 
     /***********************************
     *     Configura a assinatura       *
     ************************************/
 
     //Configurando as informações do comprador
-    pag.buyer({
+    pag.setBuyer({
         name: 'José Comprador',
         email: 'comprador@uol.com.br',
         phoneAreaCode: '51',
@@ -123,7 +123,7 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     });
 
     // Configurando os detalhes da assinatura (ver documentação do PagSeguro para mais parâmetros)
-    pag.preApproval({
+    pag.setPreApproval({
         // charge: 'auto' para cobranças automáticas ou 'manual' para cobranças
         // disparadas pelo seu back-end
         // Ver documentação do PagSeguro sobre os tipos de cobrança
@@ -194,6 +194,70 @@ Checando transação através do código
 
     // Obter Notificação
     pag.getTransaction("TRANSACTION_CODE").then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
+### Saldo
+
+Obter o saldo da sua conta do PagSeguro
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
+    pag.getBalance().then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
+### Solicitando Transferência
+
+Criar código de transferência
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
+    pag.createTransfer({
+	    receiverEmail: '{email_destinatário}',
+	    amount: '5.00',
+	    description: 'Transferência Teste 123'
+    }).then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
+### Autorizar Transferência
+
+Autorizar código de transferência
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
+    pag.authorizeTransfer('{{authorization code do retorno da solicitação}}').then(function(result){
         console.log(result);
     }).catch(function(err){
         console.error(err);
