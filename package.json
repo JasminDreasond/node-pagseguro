@@ -18,7 +18,8 @@
     },
     "dependencies": {
         "jstoxml": "^0.1.0",
-        "request": "^2.9.203"
+        "request": "^2.9.203",
+        "xml-js": "^1.6.11"
     },
     "devDependencies": {},
     "optionalDependencies": {},
