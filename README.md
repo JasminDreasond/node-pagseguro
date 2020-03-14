@@ -160,6 +160,47 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
     });
 ```
 
+### Criar um Plano
+
+Crie adesão ao seu plano
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
+    // https://dev.pagseguro.uol.com.br/reference#adesão-ao-plano
+    pag.createPlan({}).then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
+### Obter Link de Checkout para Assinaturas
+
+Coloque seu código para ser convertido em um link para direcionar o cliente para a página de pagamento
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro({
+            email : 'suporte@lojamodelo.com.br',
+            token: '95112EE828D94278BD394E91C4388F20'
+        });
+
+    // Obter Notificação
+    pag.getCheckoutPlan("pre_Approval_Request_Code").then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
 ### Editar Assinaturas
 
 Editar uma assinatura criada por você. O primeiro valor é o código do preApproval, depois vem o preço, e no final você escolhe se você quer forçar o novo valor a todos os usuários subscritos.
