@@ -12,10 +12,6 @@
         "type": "git",
         "url": "git://github.com/JasminDreasond/node-pagseguro.git"
     },
-    "scripts": {
-        "prepublish": "./node_modules/.bin/coffee -c ./lib/",
-        "build": "npm run prepublish"
-    },
     "dependencies": {
         "jstoxml": "^0.1.0",
         "request": "^2.9.203",
