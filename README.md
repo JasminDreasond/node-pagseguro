@@ -182,7 +182,7 @@ Editar uma assinatura criada por você. O primeiro valor é o código do preAppr
 
 ### Suspender ou reativar assinatura de usuário
 
-Modifique o status de uma adesão de plano para ativo ou suspenso.
+Modifique o status de uma adesão de plano
 
 ```javascript
     // Inicializa o objeto PagSeguro
@@ -193,7 +193,7 @@ Modifique o status de uma adesão de plano para ativo ou suspenso.
         });
 
     // Obter Notificação
-    pag.editPreApprovsetStatusPreApprovalal("pre-approval-code", false).then(function(result){
+    pag.setStatusPlan("pre-approval-code", false).then(function(result){
         console.log(result);
     }).catch(function(err){
         console.error(err);
