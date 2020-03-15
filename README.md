@@ -69,6 +69,19 @@ Gostaria de trocar o modo de operação? Aqui está
     pag.isSandbox(true);
 ```
 
+<!-- ### Ativar ou Desativar o App Mode
+
+Você pode usar este recurso para ativar o modo API usando modelo de aplicação
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    JSONPagSeguro.appMode = true;
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    pag.setAppMode(true, 'authorization_code');
+``` -->
+
 ### Para pagamentos únicos
 
 ```javascript
