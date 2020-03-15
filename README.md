@@ -11,16 +11,71 @@ Integração ao Pagseguro para sistemas usando o Node.js
 Veja um exemplo de projeto utilizando o pacote `pagseguro` acessando este
 repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 
+### Montando seu inicializador do Constructor
+
+Use este modelo para construir seu código inicial para dar start a API
+
+```json
+{
+    "credentials": {
+        "email" : "suporte@lojamodelo.com.br",
+        "production": {
+            "token": "95112EE828D94278BD394E91C4388F20",
+            "appID": "testezinho",
+            "appKey": "APP_KEY"
+        },
+        "sandbox": {
+            "token": "95112EE828D94278BD394E91C4388F20",
+            "appID": "testezinho",
+            "appKey": "APP_KEY"
+        }
+    }
+}
+```
+
+### Trocar Modo
+
+Para trocar o modo da sua operação de maneira rápida
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    pag.changeMode('payment');
+```
+
+### Trocar Credências
+
+Troque as credências de API no seu script
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    pag.changeCredentials(JSONPagSeguro);
+```
+
+### Mudar de Sandbox para Produção ou vice versa
+
+Gostaria de trocar o modo de operação? Aqui está
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    pag.isSandbox(true);
+```
+
 ### Para pagamentos únicos
 
 ```javascript
     //Inicializar a função com o e-mail e token
     var pag, pagseguro;
     pagseguro = require('pagseguro');
-    pag = new pagseguro({
-        email : 'suporte@lojamodelo.com.br',
-        token: '95112EE828D94278BD394E91C4388F20'
-    });
+    pag = new pagseguro(JSONPagSeguro);
 
     //Configurando a moeda e a referência do pedido
     pag.setCurrency('BRL');
@@ -90,12 +145,9 @@ repositório: https://github.com/emersonjsouza/node-pagseguro-sample.git
 
 ```javascript
     // Inicializa o objeto PagSeguro em modo assinatura
+    JSONPagSeguro.mode = "subscription";
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20',
-            mode : 'subscription'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     //Configurando a moeda e a referência do pedido
     pag
@@ -167,10 +219,7 @@ Crie adesão ao seu plano
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     // https://dev.pagseguro.uol.com.br/reference#adesão-ao-plano
@@ -188,10 +237,7 @@ Coloque seu código para ser convertido em um link para direcionar o cliente par
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.getCheckoutPlan("pre_Approval_Request_Code").then(function(result){
@@ -208,10 +254,7 @@ Editar uma assinatura criada por você. O primeiro valor é o código do preAppr
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.editPreApproval("pre_Approval_Request_Code", "NOVO_PREÇO", false).then(function(result){
@@ -228,10 +271,7 @@ Modifique o status de uma adesão de plano
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.setStatusPlan("pre-approval-code", false).then(function(result){
@@ -241,6 +281,29 @@ Modifique o status de uma adesão de plano
     });
 ```
 
+### Gerenciar quem vai receber o dinheiro
+
+Aqui você pode usar o código de Public Key gerada pela sua aplicação para definir o vendedor primário.
+String para configuração simples e Object para configuração avançada.
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    // Vendedor Primário
+    pag.setPrimaryReceiver("PUBLIC_KEY");
+```
+
+Você também precisa adicionar os vendedores secundários caso queira compartilhar o valor do pagamento.
+Amount é a quantidade a ser recebida pelo vendedor, ela pode ser uma String para configuração básica ou Object para configuração avançada.
+
+
+```javascript
+    // Vendedor Secundário
+    pag.addreceiver("AMOUNT", "PUBLIC_KEY");
+```
+
 ### Notificações
 
 Checando transação através do código de notificação
@@ -248,10 +311,7 @@ Checando transação através do código de notificação
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.getNotification("NOTIFICATION_CODE").then(function(result){
@@ -268,10 +328,7 @@ Checando transação através do código
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.getTransaction("TRANSACTION_CODE").then(function(result){
@@ -288,10 +345,7 @@ Obter o saldo da sua conta do PagSeguro
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.getBalance().then(function(result){
@@ -308,10 +362,7 @@ Criar código de transferência
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.createTransfer({
@@ -332,10 +383,7 @@ Autorizar código de transferência
 ```javascript
     // Inicializa o objeto PagSeguro
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20'
-        });
+        pag = new pagseguro(JSONPagSeguro);
 
     // Obter Notificação
     pag.authorizeTransfer('{{authorization code do retorno da solicitação}}').then(function(result){
@@ -353,12 +401,9 @@ Para utilizar o modo Sandbox, basta inicializar a biblioteca com a opção `mode
 
 ```javascript
     // Inicializa o objeto PagSeguro em modo assinatura
+    JSONPagSeguro.sandbox = true;
     var pagseguro = require('pagseguro'),
-        pag = new pagseguro({
-            email : 'suporte@lojamodelo.com.br',
-            token: '95112EE828D94278BD394E91C4388F20',
-            sandbox : true
-        });
+        pag = new pagseguro(JSONPagSeguro);
 ```
 
 É preciso gerar um token específico para o modo Sandbox na [Página do Sandbox do PagSeguro](https://sandbox.pagseguro.uol.com.br)
