@@ -1,6 +1,9 @@
 # node-pagseguro
 
 Integração ao Pagseguro para sistemas usando o Node.js
+Este projeto é totalmente pessoal para minhas utilidades pessoais
+
+Este código está autorizado a ser copiado e modificado a sua total pura vontade
 
 ## Instalação
 
