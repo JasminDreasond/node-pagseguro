@@ -69,7 +69,7 @@ Gostaria de trocar o modo de operação? Aqui está
     pag.isSandbox(true);
 ```
 
-<!-- ### Ativar ou Desativar o App Mode
+### Ativar ou Desativar o App Mode
 
 Você pode usar este recurso para ativar o modo API usando modelo de aplicação
 
@@ -80,7 +80,56 @@ Você pode usar este recurso para ativar o modo API usando modelo de aplicação
         pag = new pagseguro(JSONPagSeguro);
 
     pag.setAppMode(true, 'authorization_code');
-``` -->
+```
+
+### Obter código de permissão do aplicativo
+
+Você vai receber o código e o link de direcionamento para o cliente se registrar no seu aplicativo do PagSeguro
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    pag.getAppAuthorization({
+        permissions: [
+            'CREATE_CHECKOUTS',
+            'RECEIVE_TRANSACTION_NOTIFICATIONS',
+            'SEARCH_TRANSACTIONS',
+            'MANAGE_PAYMENT_PRE_APPROVALS',
+            'DIRECT_PAYMENT'
+        ]
+    }).then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
+### Checar Permissão de Aplicação
+
+Escolha o seu meio de checar a permissão de um usuário a sua aplicação
+Você pode escoolher entre as seguintes opções:
+
+notificationCode - Você vai apenas usar o code1 para colocar seu código de notificação
+
+authorizationCode - A mesma coisa do primeiro mencionado a cima, mas usando seu código de autorização
+
+date - Procurar por data. Code1 vai ser o initialDate e o code2 vai ser o finalDate
+
+reference - Procurar por referência, coloque sua referência no code1
+
+```javascript
+    // Inicializa o objeto PagSeguro
+    var pagseguro = require('pagseguro'),
+        pag = new pagseguro(JSONPagSeguro);
+
+    pag.checkAppAuthorization('TYPE', 'CODE1', 'CODE2').then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
 
 ### Para pagamentos únicos
 
